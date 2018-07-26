@@ -58,12 +58,50 @@ export default class Calendario extends React.Component {
         let month = '';
         month = this.state.currenteDate.format('MM');
 
-        let datas = JSON.stringify(this.getDaysArray(year, month));
+
+        let datas = (this.getDaysArray(year, month));
+
+        let segunda = [];
+        let terca = [];
+        let quarta = [];
+        let quinta = [];
+        let sexta = [];
+        let sabado = [];
+        let domingo = [];
+
+        datas.forEach(item => {
+
+            if (item.day === 'segunda') {
+                segunda.push(item.number);
+            }
+            if (item.day === 'terça') {
+                terca.push(item.number);
+            }
+            else if (item.day === 'quarta') {
+                quarta.push(item.number);
+            }
+            else if (item.day === 'quinta') {
+                quinta.push(item.number);
+            }
+            else if (item.day === 'sexta') {
+                sexta.push(item.number);
+            }
+            else if (item.day === 'sábado') {
+                sabado.push(item.number);
+            }
+            else if (item.day === 'domingo') {
+                domingo.push(item.number);
+            }
+
+        });
+
+        console.log(domingo);
+
 
         return (
 
             <div>
-                <table  style={{margin:'0 auto', border:'1px'}}>
+                <table style={{ margin: '0 auto', border: '1px' }}>
                     <thead>
                         <th>Domingo</th>
                         <th>Segunda</th>
@@ -76,20 +114,56 @@ export default class Calendario extends React.Component {
 
                     <tbody>
 
-                                <td>1</td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>34</td>
-                                <td>4</td>
-                                <td>44</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>34</td>
+                        <td>4</td>
+                        <td>44</td>
 
                     </tbody>
 
                 </table>
                 <div>
                     <h1>{`${this.state.currenteDate.format('MMM')}/${this.state.currenteDate.format('YYYY')}`}</h1>
-                    <p> {datas} </p>
+                    <div style={{display:'flex'}}>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {domingo.map(item => (
+                                <span style={{margin:'10px'}} > {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {segunda.map(item => (
+                                <span style={{margin:'10px'}}> {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {terca.map(item => (
+                                <span style={{margin:'10px'}}> {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {quarta.map(item => (
+                                <span style={{margin:'10px'}}> {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {quinta.map(item => (
+                                <   span style={{margin:'10px'}}> {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {sexta.map(item => (
+                                <span style={{margin:'10px'}}> {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            {sabado.map(item => (
+                                <span style={{margin:'10px'}}> {(item == null ? 'null': item)} </span>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
